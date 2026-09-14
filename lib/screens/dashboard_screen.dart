@@ -8,7 +8,7 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Sensor> dummySensors = [
+    final dummySensors = [
       const Sensor(
         id: '1',
         name: 'Thermostat',
@@ -28,7 +28,11 @@ class DashboardScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('SensorHub')),
+      appBar: AppBar(
+        title: const Text('SensorHub'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
       body: ListView.builder(
         itemCount: dummySensors.length,
         itemBuilder: (context, index) {
