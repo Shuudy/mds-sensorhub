@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/sensor.dart';
 
-class SensorDetailScreen extends StatelessWidget {
+class SensorDetailPage extends StatelessWidget {
   final Sensor sensor;
 
-  const SensorDetailScreen({super.key, required this.sensor});
+  const SensorDetailPage({super.key, required this.sensor});
 
   @override
   Widget build(BuildContext context) {

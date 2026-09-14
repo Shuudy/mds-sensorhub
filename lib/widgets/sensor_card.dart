@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/sensor.dart';
-import '../screens/sensor_detail_screen.dart';
+import '../pages/sensor_detail_page.dart';
 
 class SensorCard extends StatelessWidget {
   final Sensor sensor;
@@ -16,7 +16,7 @@ class SensorCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SensorDetailScreen(sensor: sensor),
+              builder: (context) => SensorDetailPage(sensor: sensor),
             ),
           );
         },
