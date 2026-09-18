@@ -34,6 +34,30 @@ class FakeSensorRepository implements SensorRepository {
       humidity: 50.0,
       isOnline: true,
     ),
+    Sensor(
+      id: '4',
+      name: 'Capteur Cuisine',
+      room: 'Cuisine',
+      temperature: 23.5,
+      humidity: 55.0,
+      isOnline: true,
+    ),
+    Sensor(
+      id: '5',
+      name: 'Capteur Salle de Bain',
+      room: 'Salle de Bain',
+      temperature: 25.0,
+      humidity: 70.0,
+      isOnline: false,
+    ),
+    Sensor(
+      id: '6',
+      name: 'Capteur Bureau',
+      room: 'Bureau',
+      temperature: 22.0,
+      humidity: 40.0,
+      isOnline: true,
+    ),
   ];
 
   final List<Sensor> _sensors;
