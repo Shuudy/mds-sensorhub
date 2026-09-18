@@ -16,7 +16,7 @@ GoRouter createAppRouter({required DashboardViewModel viewModel}) {
         path: '/sensor/:sensorId',
         builder: (context, state) {
           final sensorId = state.pathParameters['sensorId'];
-          final sensor = viewModel.sensors.firstWhere(
+          final sensor = viewModel.items.firstWhere(
             (sensor) => sensor.id == sensorId,
             orElse: () => throw StateError('Capteur introuvable'),
           );

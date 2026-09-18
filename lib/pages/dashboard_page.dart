@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../viewmodels/dashboard_viewmodel.dart';
-import '../widgets/sensor_card.dart';
+import '../viewmodels/async_state.dart';
+import '../widgets/failure_view.dart';
+import '../widgets/sensor_list_view.dart';
 
 class DashboardPage extends StatelessWidget {
   final DashboardViewModel viewModel;
@@ -16,11 +18,17 @@ class DashboardPage extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
-      body: ListView.builder(
-        itemCount: viewModel.sensorCount,
-        itemBuilder: (context, index) {
-          final sensor = viewModel.sensors[index];
-          return SensorCard(sensor: sensor);
+      body: ListenableBuilder(
+        listenable: viewModel,
+        builder: (context, child) {
+          return switch (viewModel.state) {
+            Loading() => const Center(child: CircularProgressIndicator()),
+            Content(:final values) => SensorListView(sensors: values),
+            Failure(:final message) => FailureView(
+              message: message,
+              onRetry: viewModel.load,
+            ),
+          };
         },
       ),
     );

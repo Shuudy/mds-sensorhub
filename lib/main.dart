@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'repositories/fake_sensor_repository.dart';
 import 'routes/app_router.dart';
 import 'viewmodels/dashboard_viewmodel.dart';
 
-void main() {
-  final viewModel = DashboardViewModel();
+Future<void> main() async {
+  final repository = FakeSensorRepository(latency: const Duration(seconds: 2));
+  final viewModel = DashboardViewModel(repository: repository);
   final router = createAppRouter(viewModel: viewModel);
 
   runApp(
@@ -14,4 +16,6 @@ void main() {
       routerConfig: router,
     ),
   );
+
+  await viewModel.load();
 }
