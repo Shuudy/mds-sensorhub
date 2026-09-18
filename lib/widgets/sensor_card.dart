@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../models/sensor.dart';
-import '../pages/sensor_detail_page.dart';
 
 class SensorCard extends StatelessWidget {
   final Sensor sensor;
@@ -13,12 +13,7 @@ class SensorCard extends StatelessWidget {
     return Card(
       child: ListTile(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SensorDetailPage(sensor: sensor),
-            ),
-          );
+          context.push('/sensor/${sensor.id}');
         },
         title: Text('${sensor.room} : ${sensor.temperature}°C'),
         subtitle: Text(

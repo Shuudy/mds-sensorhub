@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'pages/dashboard_page.dart';
-
+import 'routes/app_router.dart';
 import 'viewmodels/dashboard_viewmodel.dart';
 
 void main() {
   final viewModel = DashboardViewModel();
+  final router = createAppRouter(viewModel: viewModel);
 
   runApp(
-    MaterialApp(
+    MaterialApp.router(
       title: 'SensorHub',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: DashboardPage(viewModel: viewModel),
+      routerConfig: router,
     ),
   );
 }
