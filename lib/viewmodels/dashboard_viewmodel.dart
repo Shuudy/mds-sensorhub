@@ -18,6 +18,14 @@ class DashboardViewModel {
       humidity: 61.0,
       isOnline: false,
     ),
+    const Sensor(
+      id: '3',
+      name: 'Capteur Chambre',
+      room: 'Chambre',
+      temperature: 19.2,
+      humidity: 50.0,
+      isOnline: true,
+    ),
   ];
 
   List<Sensor> get sensors => _sensors;

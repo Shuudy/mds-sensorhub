@@ -22,7 +22,7 @@ class SensorCard extends StatelessWidget {
         },
         title: Text('${sensor.room} : ${sensor.temperature}°C'),
         subtitle: Text(
-          'Humidité : ${sensor.humidity}% — ${sensor.isOnline ? "En ligne" : "Alerte"}',
+          'Humidité : ${sensor.humidity}% - ${sensor.isOnline ? "En ligne" : "Alerte"}',
         ),
       ),
     );
