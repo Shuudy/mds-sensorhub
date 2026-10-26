@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../pages/dashboard_page.dart';
 import '../pages/sensor_detail_page.dart';
 import '../viewmodels/dashboard_viewmodel.dart';
+import '../widgets/failure_view.dart';
 
 GoRouter createAppRouter({required DashboardViewModel viewModel}) {
   return GoRouter(
@@ -16,10 +17,16 @@ GoRouter createAppRouter({required DashboardViewModel viewModel}) {
         path: '/sensor/:sensorId',
         builder: (context, state) {
           final sensorId = state.pathParameters['sensorId'];
-          final sensor = viewModel.items.firstWhere(
+          final matchingSensors = viewModel.items.where(
             (sensor) => sensor.id == sensorId,
-            orElse: () => throw StateError('Capteur introuvable'),
           );
+          final sensor = matchingSensors.isEmpty ? null : matchingSensors.first;
+          if (sensor == null) {
+            return FailureView(
+              message: 'Capteur introuvable',
+              onRetry: () => context.go('/'),
+            );
+          }
           return SensorDetailPage(sensor: sensor);
         },
       ),
