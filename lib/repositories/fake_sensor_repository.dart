@@ -5,7 +5,7 @@ class FakeSensorRepository implements SensorRepository {
   FakeSensorRepository({
     List<Sensor>? sensors,
     this.latency = Duration.zero,
-    this.shouldFail = false,
+    this.failingCalls = const {},
     this.failure,
   }) : _sensors = List.unmodifiable(sensors ?? _defaultSensors);
 
@@ -62,16 +62,19 @@ class FakeSensorRepository implements SensorRepository {
 
   final List<Sensor> _sensors;
   final Duration latency;
-  final bool shouldFail;
+  final Set<int> failingCalls;
   final Object? failure;
+
+  int fetchCount = 0;
 
   @override
   Future<List<Sensor>> fetchAll() async {
+    final call = ++fetchCount;
     if (latency > Duration.zero) {
       await Future<void>.delayed(latency);
     }
 
-    if (shouldFail) {
+    if (failingCalls.contains(call)) {
       throw failure ?? StateError('Impossible de charger les capteurs');
     }
 
